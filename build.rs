@@ -15,7 +15,8 @@ fn main() {
                 .arg("--disable-glx")
                 .arg("--disable-egl")
                 .arg("--disable-driglx-direct")
-                .arg("--enable-gallium-osmesa"));
+                .arg("--enable-gallium-osmesa")
+                .arg("--with-gallium-drivers=swrast"));
 
     run(Command::new("make")
                 .arg("-j16")
