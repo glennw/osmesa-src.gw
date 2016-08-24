@@ -6,6 +6,16 @@ fn main() {
     let src = env::current_dir().unwrap();
     let dst = PathBuf::from(env::var_os("OUT_DIR").unwrap());
 
+    // Prevent aclocal being run due to timestamps being messed up by git.
+    // https://stackoverflow.com/questions/18769770/user-of-autotools-generated-tarball-gets-error-message-aclocal-1-13-command-no
+    run(Command::new("touch")
+                .current_dir(src.join("mesa-12.0.1"))
+                .arg("configure.ac")
+                .arg("aclocal.m4")
+                .arg("configure")
+                .arg("Makefile.am")
+                .arg("Makefile.in"));
+
     run(Command::new(src.join("mesa-12.0.1/configure"))
                 .current_dir(&dst)
                 .arg("--disable-gles1")
