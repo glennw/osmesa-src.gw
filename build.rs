@@ -14,7 +14,9 @@ fn main() {
                 .arg("aclocal.m4")
                 .arg("configure")
                 .arg("Makefile.am")
-                .arg("Makefile.in"));
+                .arg("Makefile.in")
+                .arg("src/compiler/glsl/glcpp/glcpp-lex.c")
+                .arg("src/mesa/program/lex.yy.c"));
 
     run(Command::new(src.join("mesa-12.0.1/configure"))
                 .current_dir(&dst)
