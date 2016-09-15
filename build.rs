@@ -20,6 +20,8 @@ fn main() {
 
     run(Command::new(src.join("mesa-12.0.1/configure"))
                 .current_dir(&dst)
+                .env("PTHREADSTUBS_CFLAGS", ".")
+                .env("PTHREADSTUBS_LIBS", ".")
                 .arg("--disable-gles1")
                 .arg("--disable-gles2")
                 .arg("--disable-dri")
